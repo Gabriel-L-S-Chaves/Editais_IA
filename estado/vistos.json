@@ -1,1 +1,166 @@
-{ "atualizado_em": null, "itens": {} }
+{
+  "atualizado_em": "2026-08-26T12:21:24.598828+00:00",
+  "itens": {
+    "06118ddc771541f6": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "Fundação Santo André - SP retifica edital de concurso público para o cargo de Consultor Jurídico",
+      "url": "https://www.pciconcursos.com.br/noticias/fundacao-santo-andre-sp-retifica-edital-de-concurso-publico-para-o-cargo-de-consultor-juridico",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "1069f2299adb9a05": {
+      "categoria": "mestrado",
+      "fonte": "UnB - Pos-Graduacao em Direito (PPGD)",
+      "titulo": "Ir para o conteúdo de: Professor do PPGD/UnB tem projeto aprovado em edital nacional CAPES/STF",
+      "url": "https://ppgd.unb.br/destaques-nao-mexer/336-stf",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "11e602ca6fa34447": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Exame Nacional da Magistratura abre inscrições para a 6ª edição",
+      "url": "https://jcconcursos.com.br/noticia/concursos/exame-nacional-da-magistratura-6-edicao-2026-edital-inscricao-144934",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "2f319be405eda8cf": {
+      "categoria": "mestrado",
+      "fonte": "UnB - Pos-Graduacao em Direito (PPGD)",
+      "titulo": "Ir para o conteúdo de: EDITAL DPG/UnB Nº 08/2026 – BOLSAS DE MESTRADO E DOUTORADO FAP/DF",
+      "url": "https://ppgd.unb.br/destaques-nao-mexer/343-edital-dpg-unb-n-08-2026-bolsas-de-mestrado-e-doutorado-fap-df",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "367bcff15f9db4d9": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "CRF - ES abre concurso público para o cargo de Advogado",
+      "url": "https://www.pciconcursos.com.br/noticias/crf-es-abre-concurso-publico-para-o-cargo-de-advogado",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "52b46266e2d80424": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "Juiz de Direito Substituto",
+      "url": "https://www.tjdft.jus.br/informacoes/concursos/juiz-de-direito-substituto",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "594b57a6008f2c22": {
+      "categoria": "mestrado",
+      "fonte": "UnB - Pos-Graduacao em Direito (PPGD)",
+      "titulo": "Processo Seletivo para Estrangeiro",
+      "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-para-estrangeiro",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "66657a73a6c9eaea": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGDA abre vagas para aluno especial",
+      "url": "https://prpg.ufg.br/n/ppgda-abre-vagas-para-aluno-especial",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "71044579d83f0084": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "SEPLAG - AL publica edital de concurso público para Agente e Escrivão na Polícia Civil",
+      "url": "https://www.pciconcursos.com.br/noticias/seplag-al-publica-edital-de-concurso-publico-para-agente-e-escrivao-na-policia-civil",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "9a98fe88242420cc": {
+      "categoria": "mestrado",
+      "fonte": "UnB - Pos-Graduacao em Direito (PPGD)",
+      "titulo": "Processo Seletivo PRONERA",
+      "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-pronera",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "9eda391796980066": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGEEC abre processo seletivo para aluno especial",
+      "url": "https://prpg.ufg.br/n/ppgeec-abre-processo-seletivo-aluno-especial",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "a634600bed14838e": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "Cartilhas disponibilizadas pelas áreas do tribunal, a fim de orientar e instruir os usuários sobre diversos temas.",
+      "url": "https://www.tjdft.jus.br/publicacoes/edicoes/manuais-e-cartilhas",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "a6b7fea6a17a0508": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "Residência Jurídica",
+      "url": "https://www.tjdft.jus.br/informacoes/concursos/residencia-juridica",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "ab3b439ae653d59a": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "O Programa de Estágio do Tribunal de Justiça do Distrito Federal e dos Territórios – TJDFT.",
+      "url": "https://www.tjdft.jus.br/informacoes/concursos/estagiarios",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "c539e8ccc9615f71": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGE abre vagas para seleção de aluno especial",
+      "url": "https://prpg.ufg.br/n/ppge-abre-vagas-para-selecao-aluno-especial",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "d50abe7468d6518a": {
+      "categoria": "mestrado",
+      "fonte": "UnB - Pos-Graduacao em Direito (PPGD)",
+      "titulo": "Processo Seletivo Bolsas",
+      "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-bolsa",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "e26660f7886878ad": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "Aplicado aos Juízes e Ofícios Judiciais",
+      "url": "https://www.tjdft.jus.br/publicacoes/provimentos/provimento-geral-da-corregedoria",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "e314f6f82b48e0d4": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "Polícia Civil - BA abre concurso público para Delegado, Investigador e Escrivão",
+      "url": "https://www.pciconcursos.com.br/noticias/policia-civil-ba-abre-concurso-publico-para-delegado-investigador-e-escrivao",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "ebb6fea7f718f88b": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGCTA abre vagas para aluno especial",
+      "url": "https://prpg.ufg.br/n/ppgcta-abre-vagas-para-aluno-especial",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "ef3cd94975b18713": {
+      "categoria": "mestrado",
+      "fonte": "UnB - Pos-Graduacao em Direito (PPGD)",
+      "titulo": "Processo Seletivo 2026/2",
+      "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-2026-2",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "f07fd1291198cb98": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGS abre vagas para mestrado e doutorado",
+      "url": "https://prpg.ufg.br/n/ppgs-abre-vagas-para-mestrado-e-doutorado",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "f4206e9219205f2d": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "Analista e Técnico Judiciário",
+      "url": "https://www.tjdft.jus.br/informacoes/concursos/analista-e-tecnico-judiciario",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "f62a294d9c1ea834": {
+      "categoria": "concurso",
+      "fonte": "TJDFT - Portal",
+      "titulo": "O descumprimento das condições impostas para a concessão da remissão imprópria autoriza a revogação do benefício?",
+      "url": "https://www.tjdft.jus.br/consultas/jurisprudencia/jurisprudencia-em-temas/jurisprudencia-em-perguntas/direito-penal-e-processual-penal/menor-infrator/o-descumprimento-das-condicoes-impostas-para-a-concessao-da-remissao-impropria-autoriza-a-revogacao-do-beneficio-e-o-prosseguimento-da-acao",
+      "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    }
+  }
+}
