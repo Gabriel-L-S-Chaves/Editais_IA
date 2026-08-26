@@ -116,14 +116,8 @@ fontes:
     categoria: mestrado
     ativa: true    # confirmada: rendeu 5 editais ("PPGS abre vagas para mestrado")
 
-  - nome: UFG - Editais da PRPG
-    url: https://prpg.ufg.br/editais
-    tipo: html
-    categoria: mestrado
-    ativa: true    # candidata
-
-  - nome: UFG - Portal principal
-    url: https://www.ufg.br/
+  - nome: UFG - Faculdade de Direito
+    url: https://direito.ufg.br/
     tipo: html
     categoria: mestrado
     ativa: true    # candidata
@@ -131,29 +125,32 @@ fontes:
   # ------------------------------------------------------------------
   # Mestrado - UnB (Brasilia)
   # ------------------------------------------------------------------
-  - nome: UnB - Decanato de Pos-Graduacao (editais de selecao)
-    url: https://dpg.unb.br/editais-de-selecao
-    tipo: html
-    categoria: mestrado
-    ativa: true    # responde com 131 links
-
-  - nome: UnB - Noticias da pos-graduacao
-    url: https://dpg.unb.br/
-    tipo: html
-    categoria: mestrado
-    ativa: true
-
   - nome: UnB - Noticias institucionais
     url: https://noticias.unb.br/
     tipo: html
     categoria: mestrado
-    ativa: true
+    ativa: true    # confirmada: publica noticias como links de verdade
 
-  - nome: UnB - Portal principal
-    url: https://www.unb.br/
+  - nome: UnB - Faculdade de Direito
+    url: https://fd.unb.br/
     tipo: html
     categoria: mestrado
     ativa: true    # candidata
+
+  - nome: UnB - Pos-Graduacao em Direito (PPGD)
+    url: https://ppgd.unb.br/
+    tipo: html
+    categoria: mestrado
+    ativa: true    # candidata
+
+  # O Decanato de Pos-Graduacao (dpg.unb.br/editais-de-selecao) foi testado e
+  # nao serve: a pagina devolve 131 links, todos de menu. A lista de editais
+  # e montada por JavaScript, entao nao existe no HTML que o rastreador le.
+  - nome: UnB - Decanato de Pos-Graduacao (editais de selecao)
+    url: https://dpg.unb.br/editais-de-selecao
+    tipo: html
+    categoria: mestrado
+    ativa: false
 
   # ------------------------------------------------------------------
   # Mestrado - demais federais no DF / entorno
@@ -201,13 +198,7 @@ fontes:
     url: https://www.tjdft.jus.br/
     tipo: html
     categoria: concurso
-    ativa: true    # candidata: /institucional/concursos-e-selecoes da 404
-
-  - nome: TJDFT - Concursos em gestao de pessoas
-    url: https://www.tjdft.jus.br/institucional/gestao-de-pessoas/concursos
-    tipo: html
-    categoria: concurso
-    ativa: true    # candidata
+    ativa: true    # confirmada: achou "Juiz de Direito Substituto" e afins
 
   - nome: Cebraspe - Concursos
     url: https://www.cebraspe.org.br/concursos/

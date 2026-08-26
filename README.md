@@ -77,6 +77,9 @@ pip install -r requirements.txt
 # ver o que as fontes estao devolvendo, sem tocar no estado nem mandar e-mail
 python -m rastreador.principal --testar-fontes
 
+# idem, mostrando os links crus das fontes que nao renderam nada
+python -m rastreador.principal --testar-fontes --amostra 15
+
 # rodar so mostrando no terminal
 python -m rastreador.principal --sem-email --verboso
 
@@ -89,7 +92,13 @@ python -m rastreador.principal
 
 `--testar-fontes` e o comando mais util para ajustar a configuracao: ele mostra,
 fonte por fonte, quantos links foram lidos, quantos passaram no filtro e uma
-amostra dos titulos.
+amostra dos titulos. Se uma fonte aparecer com `0 relevante(s)`, rode de novo
+com `--amostra 15`: ele lista os links crus daquela pagina, e ai da para ver se
+o problema e a pagina (vazia, ou montada por JavaScript) ou os filtros
+(apertados demais).
+
+As mesmas opcoes existem no GitHub Actions: **Run workflow** tem as caixas
+`testar_fontes` e `amostra`.
 
 ---
 
@@ -107,8 +116,21 @@ Tudo fica em [`fontes.yml`](fontes.yml).
     ativa: true
 ```
 
-**Afinar as palavras-chave** (bloco `padroes`): `qualquer` exige pelo menos um
-termo, `todas` exige todos, `excluir` descarta. Acentos e maiusculas nao importam.
+**Afinar as palavras-chave** (bloco `padroes`). O filtro principal e `grupos`:
+cada grupo e uma lista onde basta **uma** palavra casar, mas **todos** os grupos
+precisam casar. Os padroes usam dois grupos — um de acao e um de assunto:
+
+```yaml
+    grupos:
+      - [edital, concurso, inscricoes, abre, vagas]   # aconteceu alguma coisa
+      - [direito, advogado, procurador, delegado]     # e sobre o que interessa
+```
+
+E o que separa um edital de verdade ("Polícia Civil abre concurso para
+Delegado") de um item de menu do site ("Promotorias de Justiça") — sem isso, a
+pagina do MPDFT sozinha rendia 22 falsos avisos. Tambem existem `qualquer`
+(pelo menos um termo), `todas` (todos os termos) e `excluir` (descarta).
+Acentos e maiusculas nao importam, e a busca olha o titulo e a URL do link.
 
 **Filtrar so uma area** — por exemplo, mestrado em Direito:
 
