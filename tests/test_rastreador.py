@@ -285,3 +285,34 @@ def test_resumo_nao_vaza_a_senha():
     assert "fulana@gmail.com" not in resumo
     assert "fu***@gmail.com" in resumo
     assert "16 caractere(s)" in resumo
+
+
+# ------------------------------------------ gravacao so quando ha mudanca
+
+def test_salvar_nao_reescreve_quando_nada_mudou(tmp_path):
+    caminho = tmp_path / "vistos.json"
+    estado = Estado(caminho)
+    estado.registrar([item(1)])
+    estado.salvar()
+    antes = caminho.read_text(encoding="utf-8")
+
+    # execucao seguinte sem novidade: nada a registrar, arquivo intacto
+    recarregado = Estado(caminho)
+    recarregado.registrar(recarregado.novos([item(1)]))
+    recarregado.limpar_antigos()
+    recarregado.salvar()
+    assert caminho.read_text(encoding="utf-8") == antes
+
+
+def test_salvar_grava_quando_aparece_item_novo(tmp_path):
+    caminho = tmp_path / "vistos.json"
+    estado = Estado(caminho)
+    estado.registrar([item(1)])
+    estado.salvar()
+    antes = caminho.read_text(encoding="utf-8")
+
+    seguinte = Estado(caminho)
+    seguinte.registrar(seguinte.novos([item(2)]))
+    seguinte.salvar()
+    assert caminho.read_text(encoding="utf-8") != antes
+    assert "https://x.com/2" in caminho.read_text(encoding="utf-8")

@@ -21,6 +21,7 @@ class Estado:
     def __init__(self, caminho: Path | str = CAMINHO_PADRAO):
         self.caminho = Path(caminho)
         self.itens: dict[str, dict] = {}
+        self._alterado = False
         self._carregar()
 
     def _carregar(self) -> None:
@@ -48,6 +49,8 @@ class Estado:
         return resultado
 
     def registrar(self, itens: list[Item]) -> None:
+        if itens:
+            self._alterado = True
         carimbo = _agora().isoformat()
         for item in itens:
             self.itens[item.id] = {
@@ -76,9 +79,19 @@ class Estado:
                 removidos.append(chave)
         for chave in removidos:
             del self.itens[chave]
+        if removidos:
+            self._alterado = True
         return len(removidos)
 
     def salvar(self) -> None:
+        """Grava so quando o conjunto de itens mudou.
+
+        O carimbo de data sozinho mudaria a cada execucao e faria o workflow
+        commitar tres vezes por dia sem nenhum item novo.
+        """
+        if not self._alterado and self.caminho.exists():
+            return
+
         self.caminho.parent.mkdir(parents=True, exist_ok=True)
         conteudo = {
             "atualizado_em": _agora().isoformat(),
@@ -88,3 +101,4 @@ class Estado:
             json.dumps(conteudo, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
+        self._alterado = False
