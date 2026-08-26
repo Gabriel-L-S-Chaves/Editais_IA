@@ -152,7 +152,7 @@ def testar_email() -> int:
         print(f"ERRO na configuracao: {erro}", file=sys.stderr)
         return 1
 
-    print(f"Configuracao lida: {notificacao.resumir(config)}")
+    print(f"Configuracao lida: {notificacao.resumir(config)}", flush=True)
 
     try:
         notificacao.enviar([exemplo], config)
