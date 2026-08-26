@@ -134,6 +134,27 @@ def testar_fontes(caminho_config: Path | str | None = None, amostra: int = 0) ->
     return 1 if problemas else 0
 
 
+def testar_email() -> int:
+    """Manda um e-mail de teste, com um item inventado.
+
+    Serve para conferir usuario, senha de app e servidor antes de depender do
+    envio de verdade — que so acontece quando aparece um edital novo.
+    """
+    exemplo = Item(
+        titulo="Teste do rastreador: se voce recebeu isto, o e-mail esta configurado",
+        url="https://github.com/Gabriel-L-S-Chaves/Editais_IA",
+        fonte="teste manual",
+        categoria="mestrado",
+    )
+    try:
+        notificacao.enviar([exemplo])
+    except Exception as erro:
+        print(f"ERRO ao enviar: {erro}", file=sys.stderr)
+        return 1
+    print("E-mail de teste enviado. Confira a caixa de entrada (e o spam).")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     analisador = argparse.ArgumentParser(
         prog="rastreador",
@@ -157,6 +178,11 @@ def main(argv: list[str] | None = None) -> int:
         help="verifica quais fontes respondem e quantos itens casam com os filtros",
     )
     analisador.add_argument(
+        "--testar-email",
+        action="store_true",
+        help="envia um e-mail de teste com um item ficticio e encerra",
+    )
+    analisador.add_argument(
         "--amostra",
         type=int,
         default=0,
@@ -170,6 +196,9 @@ def main(argv: list[str] | None = None) -> int:
         level=logging.INFO if args.verboso else logging.WARNING,
         format="%(levelname)s %(message)s",
     )
+
+    if args.testar_email:
+        return testar_email()
 
     if args.testar_fontes:
         return testar_fontes(args.config, amostra=args.amostra)

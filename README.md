@@ -55,7 +55,17 @@ No repositorio: **Settings -> Secrets and variables -> Actions -> New repository
 | `SMTP_PORTA` | nao | `465` (padrao, SSL) — use `587` para STARTTLS | outro provedor |
 | `EMAIL_REMETENTE` | nao | igual ao `SMTP_USUARIO` | remetente diferente |
 
-### 3. Criar a base inicial (importante)
+### 3. Conferir o envio
+
+Antes de depender do rastreio, mande um e-mail de teste:
+**Actions -> Rastrear editais -> Run workflow -> marque `testar_email` -> Run.**
+
+Se chegar na caixa de entrada, usuario, senha de app e servidor estao certos.
+Se o job falhar, o log mostra a resposta do servidor (senha errada, verificacao
+em duas etapas desativada, etc.). Pela linha de comando e
+`python -m rastreador.principal --testar-email`.
+
+### 4. Criar a base inicial (importante)
 
 Na primeira execucao, **tudo** que ja esta publicado nos sites parece novidade.
 Para nao receber uma avalanche, rode uma vez em modo de inicializacao:

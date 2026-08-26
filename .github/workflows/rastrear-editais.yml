@@ -19,6 +19,10 @@ on:
         description: "So diagnosticar as fontes: nao envia e-mail nem altera o estado"
         type: boolean
         default: false
+      testar_email:
+        description: "So mandar um e-mail de teste, para conferir a senha de app"
+        type: boolean
+        default: false
       amostra:
         description: "Com testar_fontes, mostra N links crus das fontes que nao renderam nada"
         type: string
@@ -55,6 +59,7 @@ jobs:
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
         run: |
           python -m rastreador.principal --verboso \
+            ${{ inputs.testar_email && '--testar-email' || '' }} \
             ${{ inputs.testar_fontes && '--testar-fontes' || '' }} \
             ${{ inputs.amostra && format('--amostra {0}', inputs.amostra) || '' }} \
             ${{ inputs.inicializar && '--inicializar' || '' }} \
