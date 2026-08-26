@@ -213,3 +213,37 @@ def test_grupos_mestrado(titulo, esperado):
     filtros = carregar().padroes["mestrado"]
     item = Item(titulo, "https://exemplo.com/x", "f", "mestrado")
     assert filtro.combina(item, filtros) is esperado
+
+
+# ------------------------------------- variaveis vazias vindas do Actions
+
+def test_segredo_opcional_vazio_cai_no_padrao(monkeypatch):
+    """O Actions define a variavel mesmo sem o segredo: ela chega como ""."""
+    monkeypatch.setenv("SMTP_USUARIO", "eu@gmail.com")
+    monkeypatch.setenv("SMTP_SENHA", "senha")
+    monkeypatch.setenv("EMAIL_DESTINO", "eu@gmail.com")
+    for opcional in ("SMTP_PORTA", "SMTP_SERVIDOR", "EMAIL_REMETENTE", "SMTP_SSL"):
+        monkeypatch.setenv(opcional, "")
+
+    config = ConfigEmail.do_ambiente()
+    assert config.porta == 465
+    assert config.servidor == "smtp.gmail.com"
+    assert config.remetente == "eu@gmail.com"
+    assert config.usar_ssl is True
+
+
+def test_porta_invalida_da_erro_legivel(monkeypatch):
+    monkeypatch.setenv("SMTP_USUARIO", "eu@gmail.com")
+    monkeypatch.setenv("SMTP_SENHA", "senha")
+    monkeypatch.setenv("EMAIL_DESTINO", "eu@gmail.com")
+    monkeypatch.setenv("SMTP_PORTA", "quinhentos")
+    with pytest.raises(RuntimeError, match="SMTP_PORTA invalida"):
+        ConfigEmail.do_ambiente()
+
+
+def test_destino_com_espacos_em_branco_e_ignorado(monkeypatch):
+    monkeypatch.setenv("SMTP_USUARIO", "eu@gmail.com")
+    monkeypatch.setenv("SMTP_SENHA", "senha")
+    monkeypatch.setenv("EMAIL_DESTINO", " a@x.com , , b@x.com ")
+    monkeypatch.delenv("SMTP_PORTA", raising=False)
+    assert ConfigEmail.do_ambiente().destinatarios == ("a@x.com", "b@x.com")

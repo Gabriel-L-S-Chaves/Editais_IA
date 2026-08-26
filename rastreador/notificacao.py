@@ -21,6 +21,16 @@ ROTULOS = {
 }
 
 
+def _ambiente(nome: str, padrao: str = "") -> str:
+    """Le uma variavel tratando string vazia como ausente.
+
+    O GitHub Actions define toda variavel mapeada para um segredo, mesmo quando
+    o segredo nao existe — ela chega como "". Sem isto, os.environ.get(nome,
+    padrao) devolve "" em vez do padrao, e a porta vira int("").
+    """
+    return (os.environ.get(nome) or "").strip() or padrao
+
+
 @dataclass(frozen=True)
 class ConfigEmail:
     servidor: str
@@ -36,26 +46,31 @@ class ConfigEmail:
         faltando = [
             nome
             for nome in ("SMTP_USUARIO", "SMTP_SENHA", "EMAIL_DESTINO")
-            if not os.environ.get(nome)
+            if not _ambiente(nome)
         ]
         if faltando:
             raise RuntimeError(
                 "Variaveis de ambiente ausentes: " + ", ".join(faltando)
             )
 
-        porta = int(os.environ.get("SMTP_PORTA", "465"))
-        usuario = os.environ["SMTP_USUARIO"]
+        bruta = _ambiente("SMTP_PORTA", "465")
+        try:
+            porta = int(bruta)
+        except ValueError as erro:
+            raise RuntimeError(f"SMTP_PORTA invalida: {bruta!r}") from erro
+
+        usuario = _ambiente("SMTP_USUARIO")
         destinos = tuple(
-            e.strip() for e in os.environ["EMAIL_DESTINO"].split(",") if e.strip()
+            e.strip() for e in _ambiente("EMAIL_DESTINO").split(",") if e.strip()
         )
         return cls(
-            servidor=os.environ.get("SMTP_SERVIDOR", "smtp.gmail.com"),
+            servidor=_ambiente("SMTP_SERVIDOR", "smtp.gmail.com"),
             porta=porta,
             usuario=usuario,
-            senha=os.environ["SMTP_SENHA"],
-            remetente=os.environ.get("EMAIL_REMETENTE", usuario),
+            senha=_ambiente("SMTP_SENHA"),
+            remetente=_ambiente("EMAIL_REMETENTE", usuario),
             destinatarios=destinos,
-            usar_ssl=os.environ.get("SMTP_SSL", "auto").lower() in {"auto", "1", "true"}
+            usar_ssl=_ambiente("SMTP_SSL", "auto").lower() in {"auto", "1", "true"}
             and porta == 465,
         )
 
