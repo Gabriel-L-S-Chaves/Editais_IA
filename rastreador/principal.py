@@ -100,8 +100,13 @@ def executar(
     return 0
 
 
-def testar_fontes(caminho_config: Path | str | None = None) -> int:
-    """Diagnostico: mostra o que cada fonte devolve, sem tocar no estado."""
+def testar_fontes(caminho_config: Path | str | None = None, amostra: int = 0) -> int:
+    """Diagnostico: mostra o que cada fonte devolve, sem tocar no estado.
+
+    Com `amostra`, as fontes que nao renderam nada mostram os primeiros links
+    crus da pagina. E assim que se descobre se a fonte esta vazia, se o site
+    monta a lista por JavaScript, ou se os filtros e que estao apertados demais.
+    """
     config = carregar(caminho_config) if caminho_config else carregar()
     sessao = _sessao()
     problemas = 0
@@ -121,6 +126,10 @@ def testar_fontes(caminho_config: Path | str | None = None) -> int:
         print(f"[{marca}] {fonte.nome}: {len(brutos)} link(s) -> {len(relevantes)} relevante(s)")
         for item in relevantes[:5]:
             print(f"        . {item.titulo[:90]}")
+        if not relevantes and amostra:
+            print("        (nada passou nos filtros; amostra do que a pagina tem:)")
+            for item in brutos[:amostra]:
+                print(f"        ~ {item.titulo[:90]}")
 
     return 1 if problemas else 0
 
@@ -147,6 +156,13 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="verifica quais fontes respondem e quantos itens casam com os filtros",
     )
+    analisador.add_argument(
+        "--amostra",
+        type=int,
+        default=0,
+        metavar="N",
+        help="com --testar-fontes, mostra N links crus das fontes que nao renderam nada",
+    )
     analisador.add_argument("-v", "--verboso", action="store_true")
     args = analisador.parse_args(argv)
 
@@ -156,7 +172,7 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     if args.testar_fontes:
-        return testar_fontes(args.config)
+        return testar_fontes(args.config, amostra=args.amostra)
 
     return executar(
         caminho_config=args.config,

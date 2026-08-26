@@ -100,58 +100,45 @@ padroes:
       - curso preparatorio
       - simulado
       - como passar
+      - direitos reservados
+      - todos os direitos
 
 fontes:
+  # Estado verificado em 26/08/2026 rodando o diagnostico em producao.
+  # As fontes marcadas "confirmada" foram vistas devolvendo editais de verdade.
+
   # ------------------------------------------------------------------
   # Mestrado - UFG (Goias)
-  #
-  # Verificado em 26/08/2026: prpg.ufg.br responde; editais.ufg.br nao
-  # existe e /n/processos-seletivos devolve erro 500.
   # ------------------------------------------------------------------
   - nome: UFG - Pro-Reitoria de Pos-Graduacao (PRPG)
     url: https://prpg.ufg.br/
     tipo: html
     categoria: mestrado
-    ativa: true
+    ativa: true    # confirmada: rendeu 5 editais ("PPGS abre vagas para mestrado")
 
-  - nome: UFG - Processos seletivos (sistemas)
-    url: https://sistemas.ufg.br/processos_seletivos/
+  - nome: UFG - Editais da PRPG
+    url: https://prpg.ufg.br/editais
     tipo: html
     categoria: mestrado
-    ativa: true
+    ativa: true    # candidata
 
-  - nome: UFG - Editais do portal
-    url: https://www.ufg.br/editais
+  - nome: UFG - Portal principal
+    url: https://www.ufg.br/
     tipo: html
     categoria: mestrado
-    ativa: true
-
-  - nome: UFG - Noticias da PRPG
-    url: https://prpg.ufg.br/n
-    tipo: html
-    categoria: mestrado
-    ativa: true
+    ativa: true    # candidata
 
   # ------------------------------------------------------------------
   # Mestrado - UnB (Brasilia)
-  #
-  # dpg.unb.br/editais-de-selecao e a fonte boa (verificada).
-  # www.unb.br/editais devolve 404.
   # ------------------------------------------------------------------
   - nome: UnB - Decanato de Pos-Graduacao (editais de selecao)
     url: https://dpg.unb.br/editais-de-selecao
     tipo: html
     categoria: mestrado
-    ativa: true
+    ativa: true    # responde com 131 links
 
   - nome: UnB - Noticias da pos-graduacao
     url: https://dpg.unb.br/
-    tipo: html
-    categoria: mestrado
-    ativa: true
-
-  - nome: UnB - Editais e concursos do portal
-    url: https://www.unb.br/institucional/editais
     tipo: html
     categoria: mestrado
     ativa: true
@@ -161,6 +148,12 @@ fontes:
     tipo: html
     categoria: mestrado
     ativa: true
+
+  - nome: UnB - Portal principal
+    url: https://www.unb.br/
+    tipo: html
+    categoria: mestrado
+    ativa: true    # candidata
 
   # ------------------------------------------------------------------
   # Mestrado - demais federais no DF / entorno
@@ -173,39 +166,30 @@ fontes:
 
   # ------------------------------------------------------------------
   # Concursos para formados em Direito
-  #
-  # PCI e JC sao os que mais rendem (verificado). O Cebraspe monta a
-  # pagina por JavaScript, entao o rastreador enxerga zero links ali.
   # ------------------------------------------------------------------
   - nome: PCI Concursos - ultimas noticias
     url: https://www.pciconcursos.com.br/noticias/
     tipo: html
     categoria: concurso
-    ativa: true
+    ativa: true    # confirmada: a melhor fonte, 4 vagas juridicas de uma vez
 
   - nome: PCI Concursos - vagas de nivel superior
     url: https://www.pciconcursos.com.br/concursos/nivelsuperior/
     tipo: html
     categoria: concurso
-    ativa: true
-
-  - nome: PCI Concursos - vagas no Distrito Federal
-    url: https://www.pciconcursos.com.br/concursos/centro-oeste/df/
-    tipo: html
-    categoria: concurso
-    ativa: true
+    ativa: true    # confirmada
 
   - nome: JC Concursos (feed)
     url: https://jcconcursos.com.br/feed
     tipo: rss
     categoria: concurso
-    ativa: true
+    ativa: true    # confirmada
 
   - nome: Concursos no Brasil (feed)
     url: https://www.concursosnobrasil.com.br/feed/
     tipo: rss
     categoria: concurso
-    ativa: true
+    ativa: true    # feed responde; naquele dia nao tinha vaga juridica
 
   - nome: MPDFT - Concursos
     url: https://www.mpdft.mp.br/portal/index.php/concursos-menu
@@ -213,11 +197,17 @@ fontes:
     categoria: concurso
     ativa: true
 
-  - nome: TJDFT - Concursos e selecoes
-    url: https://www.tjdft.jus.br/institucional/concursos-e-selecoes
+  - nome: TJDFT - Portal
+    url: https://www.tjdft.jus.br/
     tipo: html
     categoria: concurso
-    ativa: true
+    ativa: true    # candidata: /institucional/concursos-e-selecoes da 404
+
+  - nome: TJDFT - Concursos em gestao de pessoas
+    url: https://www.tjdft.jus.br/institucional/gestao-de-pessoas/concursos
+    tipo: html
+    categoria: concurso
+    ativa: true    # candidata
 
   - nome: Cebraspe - Concursos
     url: https://www.cebraspe.org.br/concursos/

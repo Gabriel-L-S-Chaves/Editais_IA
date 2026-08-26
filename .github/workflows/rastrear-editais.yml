@@ -19,6 +19,10 @@ on:
         description: "So diagnosticar as fontes: nao envia e-mail nem altera o estado"
         type: boolean
         default: false
+      amostra:
+        description: "Com testar_fontes, mostra N links crus das fontes que nao renderam nada"
+        type: string
+        default: "0"
 
 concurrency:
   group: rastrear-editais
@@ -52,6 +56,7 @@ jobs:
         run: |
           python -m rastreador.principal --verboso \
             ${{ inputs.testar_fontes && '--testar-fontes' || '' }} \
+            ${{ inputs.amostra && format('--amostra {0}', inputs.amostra) || '' }} \
             ${{ inputs.inicializar && '--inicializar' || '' }} \
             ${{ inputs.sem_email && '--sem-email' || '' }}
 
