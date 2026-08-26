@@ -134,6 +134,33 @@ def testar_fontes(caminho_config: Path | str | None = None, amostra: int = 0) ->
     return 1 if problemas else 0
 
 
+def enviar_previa(caminho_config: Path | str | None = None) -> int:
+    """Manda por e-mail tudo que passa nos filtros agora, novo ou nao.
+
+    Diferente da execucao normal, ignora e nao altera o estado: serve para ver
+    o e-mail com conteudo real, ou para pedir de novo o que esta no radar.
+    """
+    config = carregar(caminho_config) if caminho_config else carregar()
+    encontrados, falhas = varrer(config)
+
+    for falha in falhas:
+        print(f"  fonte com problema: {falha}", file=sys.stderr)
+
+    if not encontrados:
+        print("Nenhum item passou nos filtros agora. Nada a enviar.")
+        return 0
+
+    print(f"Enviando previa com {len(encontrados)} item(ns).", flush=True)
+    try:
+        notificacao.enviar(encontrados)
+    except Exception as erro:
+        print(f"ERRO ao enviar: {erro}", file=sys.stderr)
+        return 1
+
+    print("Previa enviada. O estado nao foi alterado.")
+    return 0
+
+
 def testar_email() -> int:
     """Manda um e-mail de teste, com um item inventado.
 
@@ -186,6 +213,11 @@ def main(argv: list[str] | None = None) -> int:
         help="verifica quais fontes respondem e quantos itens casam com os filtros",
     )
     analisador.add_argument(
+        "--previa",
+        action="store_true",
+        help="envia por e-mail tudo que passa nos filtros agora, sem mexer no estado",
+    )
+    analisador.add_argument(
         "--testar-email",
         action="store_true",
         help="envia um e-mail de teste com um item ficticio e encerra",
@@ -204,6 +236,9 @@ def main(argv: list[str] | None = None) -> int:
         level=logging.INFO if args.verboso else logging.WARNING,
         format="%(levelname)s %(message)s",
     )
+
+    if args.previa:
+        return enviar_previa(args.config)
 
     if args.testar_email:
         return testar_email()

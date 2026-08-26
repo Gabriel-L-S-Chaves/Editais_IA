@@ -93,6 +93,9 @@ python -m rastreador.principal --testar-fontes --amostra 15
 # rodar so mostrando no terminal
 python -m rastreador.principal --sem-email --verboso
 
+# mandar por e-mail tudo que passa nos filtros agora, sem mexer no estado
+python -m rastreador.principal --previa
+
 # rodar de verdade (precisa das variaveis de ambiente)
 export SMTP_USUARIO=seuemail@gmail.com
 export SMTP_SENHA='sua senha de app'
@@ -108,7 +111,11 @@ o problema e a pagina (vazia, ou montada por JavaScript) ou os filtros
 (apertados demais).
 
 As mesmas opcoes existem no GitHub Actions: **Run workflow** tem as caixas
-`testar_fontes` e `amostra`.
+`testar_fontes`, `amostra`, `testar_email` e `previa`.
+
+`--previa` e util quando voce quer rever o que esta no radar sem esperar
+aparecer coisa nova: ele manda o e-mail com tudo que passa nos filtros no
+momento, e nao marca nada como visto.
 
 ---
 
