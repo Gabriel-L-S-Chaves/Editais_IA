@@ -19,6 +19,10 @@ def combina(item: Item, filtros: Filtros) -> bool:
         if normalizar(termo) not in alvo:
             return False
 
+    for grupo in filtros.grupos:
+        if grupo and not any(normalizar(termo) in alvo for termo in grupo):
+            return False
+
     if not filtros.qualquer:
         return True
 

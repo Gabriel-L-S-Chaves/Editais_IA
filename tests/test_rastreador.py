@@ -172,3 +172,44 @@ def test_fontes_yml_carrega_e_tem_as_duas_categorias():
     categorias = {f.categoria for f in config.ativas}
     assert {"mestrado", "concurso"} <= categorias
     assert all(f.url.startswith("http") for f in config.fontes)
+
+
+# --------------------------------------- filtro por grupos (acao + assunto)
+
+@pytest.mark.parametrize(
+    "titulo, esperado",
+    [
+        # titulos reais colhidos das fontes em 26/08/2026
+        ("SEPLAG - AL publica edital de concurso público para Agente e Escrivão", True),
+        ("Polícia Civil - BA abre concurso público para Delegado e Escrivão", True),
+        ("CRF - ES abre concurso público para o cargo de Advogado", True),
+        ("Exame Nacional da Magistratura abre inscrições para a 6ª edição", True),
+        # itens de menu dos sites: tem o assunto, nao tem a acao
+        ("Procuradoria-Geral de Justiça", False),
+        ("Promotorias de Justiça nas cidades", False),
+        ("Câmara de Pesquisa e Pós-Graduação CPP", False),
+        # concurso real, mas de area que nao interessa
+        ("Prefeitura abre concurso com vagas para Agente de Limpeza Urbana", False),
+    ],
+)
+def test_grupos_separam_edital_de_item_de_menu(titulo, esperado):
+    filtros = carregar().padroes["concurso"]
+    item = Item(titulo, "https://exemplo.com/x", "f", "concurso")
+    assert filtro.combina(item, filtros) is esperado
+
+
+@pytest.mark.parametrize(
+    "titulo, esperado",
+    [
+        ("Edital 12/2026 - Seleção de Mestrado em Direito", True),
+        ("Inscrições abertas para o Programa de Pós-Graduação em Direito", True),
+        ("Programas de Pós-Graduação", False),        # menu
+        ("Editais de Seleção", False),                # menu: sem o assunto
+        ("Gestão da pós-graduação stricto sensu", False),
+        ("Edital de especialização em gestão pública", False),  # lato sensu
+    ],
+)
+def test_grupos_mestrado(titulo, esperado):
+    filtros = carregar().padroes["mestrado"]
+    item = Item(titulo, "https://exemplo.com/x", "f", "mestrado")
+    assert filtro.combina(item, filtros) is esperado

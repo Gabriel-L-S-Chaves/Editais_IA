@@ -13,62 +13,100 @@
 #   ativa      -> false desliga a fonte sem apagar a configuracao
 #   filtros    -> sobrescreve os filtros padrao da categoria (opcional)
 #
-# Filtros:
-#   qualquer -> o texto do link precisa conter PELO MENOS UMA destas palavras
-#   todas    -> o texto precisa conter TODAS estas palavras
+# Filtros (todos opcionais, combinaveis):
+#   grupos   -> lista de listas. Dentro de um grupo basta UMA palavra casar,
+#               mas TODOS os grupos precisam casar. E o filtro principal.
+#   qualquer -> o texto precisa conter pelo menos uma destas palavras
+#   todas    -> o texto precisa conter todas estas palavras
 #   excluir  -> se contiver qualquer uma destas, o link e descartado
-# A comparacao ignora maiusculas e acentos.
+# A comparacao ignora maiusculas e acentos, e olha o titulo e a URL do link.
 
 padroes:
+  # Um item so vira aviso se casar com TODOS os grupos: precisa ter uma palavra
+  # de acao (algo foi publicado/aberto) E uma palavra de assunto (e sobre o que
+  # voce quer). Isso barra os itens de menu dos sites, que tem o assunto
+  # ("Programas de Pos-Graduacao", "Promotorias de Justica") mas nunca a acao.
   mestrado:
-    qualquer:
-      - edital
-      - processo seletivo
-      - selecao
-      - inscricoes
-      - inscricao
-      - mestrado
-      - pos-graduacao
-      - stricto sensu
-    todas: []
+    grupos:
+      - # acao
+        - edital
+        - processo seletivo
+        - processos seletivos
+        - inscricoes
+        - inscricao
+        - chamada publica
+        - selecao de candidatos
+        - vagas
+        - abertas
+        - prorrog
+      - # assunto
+        - mestrado
+        - pos-graduacao
+        - pos graduacao
+        - posgraduacao
+        - stricto sensu
+        - ppg
     excluir:
       - resultado final
+      - resultado preliminar
       - homologacao do resultado
       - retificacao do resultado
       - convocacao para matricula
       - iniciacao cientifica
       - graduacao sanduiche
+      - lato sensu
+      - especializacao
 
   concurso:
-    qualquer:
-      - direito
-      - juridic
-      - advogad
-      - procurador
-      - defensor
-      - promotor
-      - magistratura
-      - juiz
-      - delegado
-      - analista judiciario
-      - tecnico judiciario
-      - oficial de justica
-      - assessor juridico
-      - escriva
-      - ministerio publico
-      - tribunal
-      - oab
-    todas: []
+    grupos:
+      - # acao
+        - edital
+        - concurso
+        - inscricoes
+        - inscricao
+        - abre
+        - abertas
+        - publica
+        - lanca
+        - autoriza
+        - retifica
+        - prorrog
+        - vagas
+        - processo seletivo
+      - # assunto: cargos e areas de formacao em Direito
+        - direito
+        - juridic
+        - advogad
+        - procurador
+        - defensor
+        - promotor
+        - magistratura
+        - juiz
+        - delegado
+        - escriva
+        - oficial de justica
+        - analista judiciario
+        - tecnico judiciario
+        - analista processual
+        - ministerio publico
+        - defensoria
+        - tribunal
+        - oab
     excluir:
       - resultado final
+      - resultado preliminar
       - gabarito
       - apostila
       - curso preparatorio
       - simulado
+      - como passar
 
 fontes:
   # ------------------------------------------------------------------
   # Mestrado - UFG (Goias)
+  #
+  # Verificado em 26/08/2026: prpg.ufg.br responde; editais.ufg.br nao
+  # existe e /n/processos-seletivos devolve erro 500.
   # ------------------------------------------------------------------
   - nome: UFG - Pro-Reitoria de Pos-Graduacao (PRPG)
     url: https://prpg.ufg.br/
@@ -76,20 +114,29 @@ fontes:
     categoria: mestrado
     ativa: true
 
-  - nome: UFG - Processos seletivos stricto sensu
-    url: https://prpg.ufg.br/n/processos-seletivos
+  - nome: UFG - Processos seletivos (sistemas)
+    url: https://sistemas.ufg.br/processos_seletivos/
     tipo: html
     categoria: mestrado
     ativa: true
 
-  - nome: UFG - Editais institucionais
-    url: https://editais.ufg.br/
+  - nome: UFG - Editais do portal
+    url: https://www.ufg.br/editais
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  - nome: UFG - Noticias da PRPG
+    url: https://prpg.ufg.br/n
     tipo: html
     categoria: mestrado
     ativa: true
 
   # ------------------------------------------------------------------
   # Mestrado - UnB (Brasilia)
+  #
+  # dpg.unb.br/editais-de-selecao e a fonte boa (verificada).
+  # www.unb.br/editais devolve 404.
   # ------------------------------------------------------------------
   - nome: UnB - Decanato de Pos-Graduacao (editais de selecao)
     url: https://dpg.unb.br/editais-de-selecao
@@ -97,14 +144,20 @@ fontes:
     categoria: mestrado
     ativa: true
 
-  - nome: UnB - Portal de editais
-    url: https://www.unb.br/editais
+  - nome: UnB - Noticias da pos-graduacao
+    url: https://dpg.unb.br/
     tipo: html
     categoria: mestrado
     ativa: true
 
-  - nome: UnB - Noticias da pos-graduacao
-    url: https://dpg.unb.br/
+  - nome: UnB - Editais e concursos do portal
+    url: https://www.unb.br/institucional/editais
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  - nome: UnB - Noticias institucionais
+    url: https://noticias.unb.br/
     tipo: html
     categoria: mestrado
     ativa: true
@@ -120,13 +173,10 @@ fontes:
 
   # ------------------------------------------------------------------
   # Concursos para formados em Direito
+  #
+  # PCI e JC sao os que mais rendem (verificado). O Cebraspe monta a
+  # pagina por JavaScript, entao o rastreador enxerga zero links ali.
   # ------------------------------------------------------------------
-  - nome: Concursos no Brasil (feed)
-    url: https://www.concursosnobrasil.com.br/feed/
-    tipo: rss
-    categoria: concurso
-    ativa: true
-
   - nome: PCI Concursos - ultimas noticias
     url: https://www.pciconcursos.com.br/noticias/
     tipo: html
@@ -139,15 +189,21 @@ fontes:
     categoria: concurso
     ativa: true
 
+  - nome: PCI Concursos - vagas no Distrito Federal
+    url: https://www.pciconcursos.com.br/concursos/centro-oeste/df/
+    tipo: html
+    categoria: concurso
+    ativa: true
+
   - nome: JC Concursos (feed)
     url: https://jcconcursos.com.br/feed
     tipo: rss
     categoria: concurso
     ativa: true
 
-  - nome: TJDFT - Concursos
-    url: https://www.tjdft.jus.br/institucional/concursos
-    tipo: html
+  - nome: Concursos no Brasil (feed)
+    url: https://www.concursosnobrasil.com.br/feed/
+    tipo: rss
     categoria: concurso
     ativa: true
 
@@ -157,8 +213,14 @@ fontes:
     categoria: concurso
     ativa: true
 
-  - nome: Cebraspe - Concursos em andamento
-    url: https://www.cebraspe.org.br/concursos/
+  - nome: TJDFT - Concursos e selecoes
+    url: https://www.tjdft.jus.br/institucional/concursos-e-selecoes
     tipo: html
     categoria: concurso
     ativa: true
+
+  - nome: Cebraspe - Concursos
+    url: https://www.cebraspe.org.br/concursos/
+    tipo: html
+    categoria: concurso
+    ativa: false   # pagina montada por JavaScript: o rastreador ve 0 links

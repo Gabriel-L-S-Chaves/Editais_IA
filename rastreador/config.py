@@ -17,6 +17,10 @@ class Filtros:
     qualquer: tuple[str, ...] = ()
     todas: tuple[str, ...] = ()
     excluir: tuple[str, ...] = ()
+    # cada grupo e um "pelo menos um destes"; TODOS os grupos precisam casar.
+    # e o que separa um edital de verdade ("Edital de selecao - Mestrado em
+    # Direito") de um item de menu do site ("Programas de Pos-Graduacao").
+    grupos: tuple[tuple[str, ...], ...] = ()
 
     @classmethod
     def de_dict(cls, dados: dict[str, Any] | None) -> "Filtros":
@@ -25,6 +29,7 @@ class Filtros:
             qualquer=tuple(dados.get("qualquer") or ()),
             todas=tuple(dados.get("todas") or ()),
             excluir=tuple(dados.get("excluir") or ()),
+            grupos=tuple(tuple(g) for g in (dados.get("grupos") or ())),
         )
 
 
