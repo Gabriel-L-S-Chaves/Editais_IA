@@ -15,6 +15,10 @@ on:
         description: "Rodar sem enviar e-mail (so mostra no log)"
         type: boolean
         default: false
+      testar_fontes:
+        description: "So diagnosticar as fontes: nao envia e-mail nem altera o estado"
+        type: boolean
+        default: false
 
 concurrency:
   group: rastrear-editais
@@ -47,6 +51,7 @@ jobs:
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
         run: |
           python -m rastreador.principal --verboso \
+            ${{ inputs.testar_fontes && '--testar-fontes' || '' }} \
             ${{ inputs.inicializar && '--inicializar' || '' }} \
             ${{ inputs.sem_email && '--sem-email' || '' }}
 
