@@ -15,9 +15,11 @@ from .coletor import Item
 
 log = logging.getLogger(__name__)
 
+# Texto que a pessoa le no e-mail: aqui vai portugues com acento, ao contrario
+# do resto do codigo.
 ROTULOS = {
-    "mestrado": "Mestrado / pos-graduacao",
-    "concurso": "Concursos - Direito",
+    "mestrado": "Mestrado / pós-graduação",
+    "concurso": "Concursos — Direito",
     "geral": "Outros",
 }
 
@@ -140,7 +142,8 @@ def montar_texto(itens: list[Item]) -> str:
             linhas.append(f"  fonte: {item.fonte}")
         linhas.append("")
     linhas.append(
-        "Este e um aviso automatico. Confirme sempre a informacao na pagina oficial."
+        "Este é um aviso automático. Confirme sempre a informação na página "
+        "oficial antes de se inscrever."
     )
     return "\n".join(linhas)
 
@@ -166,8 +169,8 @@ def montar_html(itens: list[Item]) -> str:
             )
         blocos.append("</ul>")
     blocos.append(
-        "<p style=\"color:#666;font-size:12px;margin-top:24px\">Aviso automatico. "
-        "Confirme sempre a informacao na pagina oficial antes de se inscrever.</p>"
+        "<p style=\"color:#666;font-size:12px;margin-top:24px\">Aviso automático. "
+        "Confirme sempre a informação na página oficial antes de se inscrever.</p>"
     )
     blocos.append("</body></html>")
     return "".join(blocos)

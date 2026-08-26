@@ -141,7 +141,7 @@ def testar_email() -> int:
     envio de verdade — que so acontece quando aparece um edital novo.
     """
     exemplo = Item(
-        titulo="Teste do rastreador: se voce recebeu isto, o e-mail esta configurado",
+        titulo="Teste do rastreador: se você recebeu isto, o e-mail está configurado",
         url="https://github.com/Gabriel-L-S-Chaves/Editais_IA",
         fonte="teste manual",
         categoria="mestrado",

@@ -316,3 +316,23 @@ def test_salvar_grava_quando_aparece_item_novo(tmp_path):
     seguinte.salvar()
     assert caminho.read_text(encoding="utf-8") != antes
     assert "https://x.com/2" in caminho.read_text(encoding="utf-8")
+
+
+# --------------------------------------- acentuacao no texto que a pessoa le
+
+def test_email_sai_com_acento_nas_duas_versoes():
+    itens = [Item("Edital de mestrado", "https://a.com/1", "UFG", "mestrado")]
+    config = ConfigEmail(
+        servidor="smtp.gmail.com", porta=465, usuario="u@x.com", senha="s",
+        remetente="u@x.com", destinatarios=("d@x.com",), usar_ssl=True,
+    )
+    mensagem = montar_mensagem(itens, config)
+
+    texto = mensagem.get_body(("plain",)).get_content()
+    html_ = mensagem.get_body(("html",)).get_content()
+    for parte in (texto, html_):
+        assert "pós-graduação" in parte
+        assert "automático" in parte
+        assert "pos-graduacao" not in parte
+
+    assert "pós-graduação" in mensagem["Subject"]
