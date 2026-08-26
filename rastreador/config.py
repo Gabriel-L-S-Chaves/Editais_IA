@@ -21,6 +21,10 @@ class Filtros:
     # e o que separa um edital de verdade ("Edital de selecao - Mestrado em
     # Direito") de um item de menu do site ("Programas de Pos-Graduacao").
     grupos: tuple[tuple[str, ...], ...] = ()
+    # iguais aos grupos, mas comparados so com o titulo do link, sem a URL.
+    # A URL casa por pedaco de palavra: "publica" casa com "/publicacoes/", e
+    # foi assim que cartilhas do TJDFT entraram como concurso.
+    grupos_no_titulo: tuple[tuple[str, ...], ...] = ()
 
     @classmethod
     def de_dict(cls, dados: dict[str, Any] | None) -> "Filtros":
@@ -30,6 +34,9 @@ class Filtros:
             todas=tuple(dados.get("todas") or ()),
             excluir=tuple(dados.get("excluir") or ()),
             grupos=tuple(tuple(g) for g in (dados.get("grupos") or ())),
+            grupos_no_titulo=tuple(
+                tuple(g) for g in (dados.get("grupos_no_titulo") or ())
+            ),
         )
 
 

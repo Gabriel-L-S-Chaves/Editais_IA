@@ -29,6 +29,17 @@ TITULO_MINIMO = 12  # descarta ancoras como "leia mais", ">>", "1", "topo"
 
 _LIXO = re.compile(r"\s+")
 
+# Links de pular-para-o-conteudo, que alguns sites (a UnB, por exemplo) poem
+# antes do titulo de verdade: "Ir para o conteudo de: EDITAL DPG/UnB No 08/2026".
+_PREFIXO_ACESSIBILIDADE = re.compile(
+    r"^ir para (o |a )?(conte[uú]do|texto|p[aá]gina)( de| da| do)?\s*:?\s*",
+    re.IGNORECASE,
+)
+
+
+def limpar_titulo(titulo: str) -> str:
+    return _PREFIXO_ACESSIBILIDADE.sub("", _LIXO.sub(" ", titulo)).strip()
+
 
 @dataclass(frozen=True)
 class Item:
@@ -78,7 +89,7 @@ def extrair_html(conteudo: str, fonte: Fonte) -> list[Item]:
         if not href or href.startswith(("#", "javascript:", "mailto:", "tel:")):
             continue
 
-        titulo = _LIXO.sub(" ", ancora.get_text(" ", strip=True))
+        titulo = limpar_titulo(ancora.get_text(" ", strip=True))
         if len(titulo) < TITULO_MINIMO:
             # links so com imagem/icone: tenta o title ou o alt da imagem
             imagem = ancora.find("img")
@@ -137,7 +148,7 @@ def extrair_rss(conteudo: str, fonte: Fonte) -> list[Item]:
 
         itens.append(
             Item(
-                titulo=_LIXO.sub(" ", titulo),
+                titulo=limpar_titulo(titulo),
                 url=urljoin(fonte.url, url),
                 fonte=fonte.nome,
                 categoria=fonte.categoria,

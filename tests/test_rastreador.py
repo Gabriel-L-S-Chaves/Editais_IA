@@ -336,3 +336,50 @@ def test_email_sai_com_acento_nas_duas_versoes():
         assert "pos-graduacao" not in parte
 
     assert "pós-graduação" in mensagem["Subject"]
+
+
+# ------------------------------ acao vale so no titulo, nunca dentro da URL
+
+@pytest.mark.parametrize(
+    "titulo, url, esperado",
+    [
+        # casos reais que entravam por causa da URL, nao do titulo
+        ("Cartilhas disponibilizadas pelas áreas do tribunal",
+         "https://www.tjdft.jus.br/publicacoes/edicoes/manuais-e-cartilhas", False),
+        ("Aplicado aos Juízes e Ofícios Judiciais",
+         "https://www.tjdft.jus.br/publicacoes/provimentos/provimento-geral", False),
+        # o anuncio de verdade traz a acao no proprio titulo
+        ("SEPLAG - AL publica edital de concurso para Escrivão",
+         "https://www.pciconcursos.com.br/noticias/seplag-al", True),
+    ],
+)
+def test_acao_precisa_estar_no_titulo(titulo, url, esperado):
+    filtros = carregar().padroes["concurso"]
+    assert filtro.combina(Item(titulo, url, "f", "concurso"), filtros) is esperado
+
+
+def test_assunto_ainda_pode_vir_da_url():
+    """"Processo Seletivo 2026/2" so se sabe que e de pos-graduacao pela URL."""
+    filtros = carregar().padroes["mestrado"]
+    item = Item("Processo Seletivo 2026/2", "https://ppgd.unb.br/processo-seletivo", "f", "mestrado")
+    assert filtro.combina(item, filtros)
+
+
+# ------------------------------------- prefixo de link de pular-para-conteudo
+
+@pytest.mark.parametrize(
+    "bruto, limpo",
+    [
+        ("Ir para o conteúdo de: EDITAL DPG/UnB Nº 08/2026 – BOLSAS",
+         "EDITAL DPG/UnB Nº 08/2026 – BOLSAS"),
+        ("Ir para o conteudo de:  Processo Seletivo 2026/2", "Processo Seletivo 2026/2"),
+        ("Ir para a página de: Editais", "Editais"),
+        # nao mexe em titulo que so comeca parecido
+        ("Ir e vir: novo edital", "Ir e vir: novo edital"),
+        ("Edital de mestrado", "Edital de mestrado"),
+    ],
+)
+def test_limpa_prefixo_de_acessibilidade(bruto, limpo):
+    from rastreador.coletor import limpar_titulo
+
+    assert limpar_titulo(bruto) == limpo

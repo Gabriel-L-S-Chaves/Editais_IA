@@ -131,10 +131,17 @@ cada grupo e uma lista onde basta **uma** palavra casar, mas **todos** os grupos
 precisam casar. Os padroes usam dois grupos — um de acao e um de assunto:
 
 ```yaml
-    grupos:
+    grupos_no_titulo:
       - [edital, concurso, inscricoes, abre, vagas]   # aconteceu alguma coisa
+    grupos:
       - [direito, advogado, procurador, delegado]     # e sobre o que interessa
 ```
+
+`grupos_no_titulo` olha so o titulo do link; `grupos` olha titulo e URL. A
+diferenca importa: a URL casa por pedaco de palavra, entao "publica" casava com
+`/publicacoes/` e as cartilhas do TJDFT viravam concurso. Ja o assunto ganha
+com a URL — "Processo Seletivo 2026/2" so se revela de pos-graduacao por estar
+em `ppgd.unb.br`.
 
 E o que separa um edital de verdade ("Polícia Civil abre concurso para
 Delegado") de um item de menu do site ("Promotorias de Justiça") — sem isso, a

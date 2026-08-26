@@ -27,8 +27,8 @@ padroes:
   # voce quer). Isso barra os itens de menu dos sites, que tem o assunto
   # ("Programas de Pos-Graduacao", "Promotorias de Justica") mas nunca a acao.
   mestrado:
-    grupos:
-      - # acao
+    grupos_no_titulo:
+      - # acao (so no titulo: na URL, pedaco de palavra casa demais)
         - edital
         - processo seletivo
         - processos seletivos
@@ -39,7 +39,8 @@ padroes:
         - vagas
         - abertas
         - prorrog
-      - # assunto
+    grupos:
+      - # assunto (aqui a URL ajuda: /ppgd/, /pos-graduacao/)
         - mestrado
         - pos-graduacao
         - pos graduacao
@@ -58,8 +59,8 @@ padroes:
       - especializacao
 
   concurso:
-    grupos:
-      - # acao
+    grupos_no_titulo:
+      - # acao (so no titulo: "publica" casava com "/publicacoes/")
         - edital
         - concurso
         - inscricoes
@@ -68,11 +69,11 @@ padroes:
         - abertas
         - publica
         - lanca
-        - autoriza
         - retifica
         - prorrog
         - vagas
         - processo seletivo
+    grupos:
       - # assunto: cargos e areas de formacao em Direito
         - direito
         - juridic
