@@ -270,3 +270,18 @@ def test_senha_de_app_com_espacos(monkeypatch, digitada, esperada):
     monkeypatch.setenv("SMTP_SENHA", digitada)
     monkeypatch.delenv("SMTP_PORTA", raising=False)
     assert ConfigEmail.do_ambiente().senha == esperada
+
+
+def test_resumo_nao_vaza_a_senha():
+    from rastreador.notificacao import resumir
+
+    config = ConfigEmail(
+        servidor="smtp.gmail.com", porta=465, usuario="fulana@gmail.com",
+        senha="tnizulymtqfvvwov", remetente="fulana@gmail.com",
+        destinatarios=("fulana@gmail.com",), usar_ssl=True,
+    )
+    resumo = resumir(config)
+    assert "tnizulymtqfvvwov" not in resumo
+    assert "fulana@gmail.com" not in resumo
+    assert "fu***@gmail.com" in resumo
+    assert "16 caractere(s)" in resumo

@@ -147,7 +147,15 @@ def testar_email() -> int:
         categoria="mestrado",
     )
     try:
-        notificacao.enviar([exemplo])
+        config = notificacao.ConfigEmail.do_ambiente()
+    except Exception as erro:
+        print(f"ERRO na configuracao: {erro}", file=sys.stderr)
+        return 1
+
+    print(f"Configuracao lida: {notificacao.resumir(config)}")
+
+    try:
+        notificacao.enviar([exemplo], config)
     except Exception as erro:
         print(f"ERRO ao enviar: {erro}", file=sys.stderr)
         return 1

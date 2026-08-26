@@ -91,6 +91,30 @@ class ConfigEmail:
         )
 
 
+def mascarar(endereco: str) -> str:
+    """an***@gmail.com — o bastante para conferir a conta sem expor o endereco."""
+    if "@" not in endereco:
+        return (endereco[:2] + "***") if endereco else "(vazio)"
+    local, _, dominio = endereco.partition("@")
+    return f"{local[:2]}***@{dominio}"
+
+
+def resumir(config: "ConfigEmail") -> str:
+    """Descreve a configuracao sem revelar a senha, so o tamanho dela.
+
+    Uma senha de app do Google tem 16 caracteres. Qualquer outro numero aqui
+    aponta o dedo para o segredo (letra faltando, texto colado errado); 16 com
+    recusa do servidor aponta para a senha em si, que precisa ser regerada.
+    """
+    return (
+        f"servidor={config.servidor}:{config.porta} ssl={config.usar_ssl} "
+        f"usuario={mascarar(config.usuario)} "
+        f"remetente={mascarar(config.remetente)} "
+        f"destino={', '.join(mascarar(d) for d in config.destinatarios)} "
+        f"tamanho da senha={len(config.senha)} caractere(s)"
+    )
+
+
 def agrupar(itens: list[Item]) -> dict[str, list[Item]]:
     grupos: dict[str, list[Item]] = {}
     for item in itens:
