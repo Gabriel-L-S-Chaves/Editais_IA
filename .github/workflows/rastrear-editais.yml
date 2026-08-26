@@ -1,0 +1,69 @@
+name: Rastrear editais
+
+on:
+  schedule:
+    # 09:00, 15:00 e 21:00 no horario de Brasilia (UTC-3)
+    - cron: "0 12,18 * * *"
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      inicializar:
+        description: "Marcar tudo que existe hoje como ja visto (nao envia e-mail)"
+        type: boolean
+        default: false
+      sem_email:
+        description: "Rodar sem enviar e-mail (so mostra no log)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: rastrear-editais
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rastrear:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Rastrear
+        env:
+          SMTP_SERVIDOR: ${{ secrets.SMTP_SERVIDOR }}
+          SMTP_PORTA: ${{ secrets.SMTP_PORTA }}
+          SMTP_USUARIO: ${{ secrets.SMTP_USUARIO }}
+          SMTP_SENHA: ${{ secrets.SMTP_SENHA }}
+          EMAIL_REMETENTE: ${{ secrets.EMAIL_REMETENTE }}
+          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+        run: |
+          python -m rastreador.principal --verboso \
+            ${{ inputs.inicializar && '--inicializar' || '' }} \
+            ${{ inputs.sem_email && '--sem-email' || '' }}
+
+      - name: Guardar o que ja foi avisado
+        if: always()
+        run: |
+          if [ -z "$(git status --porcelain estado/)" ]; then
+            echo "Nada mudou no estado."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/
+          git commit -m "estado: registra editais ja avisados ($(date -u +%Y-%m-%d))"
+          for tentativa in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            echo "push falhou, tentativa $tentativa"
+            sleep $((2 ** tentativa))
+          done
+          exit 1

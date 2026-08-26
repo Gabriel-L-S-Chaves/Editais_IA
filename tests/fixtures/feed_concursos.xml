@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>Concursos</title>
+  <item>
+    <title>Edital publicado: TJDFT abre vagas para Analista Judiciário - Área Judiciária</title>
+    <link>https://exemplo.com/tjdft-analista</link>
+  </item>
+  <item>
+    <title>Concurso da Prefeitura abre vagas para Agente de Limpeza Urbana</title>
+    <link>https://exemplo.com/agente-limpeza</link>
+  </item>
+  <item>
+    <title>Gabarito do concurso de Procurador do Estado já está disponível</title>
+    <link>https://exemplo.com/gabarito-procurador</link>
+  </item>
+</channel></rss>

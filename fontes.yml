@@ -1,0 +1,164 @@
+# Configuracao das fontes rastreadas.
+#
+# Cada fonte e uma pagina (HTML) ou um feed (RSS/Atom) que sera baixada a cada
+# execucao. O rastreador extrai TODOS os links da pagina e mantem apenas os que
+# passam nos filtros de palavras-chave. Isso e proposital: nao dependemos de
+# seletores CSS especificos, que quebram sempre que o site muda de layout.
+#
+# Campos de cada fonte:
+#   nome       -> rotulo usado no e-mail
+#   url        -> endereco a ser baixado
+#   tipo       -> "html" ou "rss"
+#   categoria  -> "mestrado" ou "concurso" (usado para agrupar o e-mail)
+#   ativa      -> false desliga a fonte sem apagar a configuracao
+#   filtros    -> sobrescreve os filtros padrao da categoria (opcional)
+#
+# Filtros:
+#   qualquer -> o texto do link precisa conter PELO MENOS UMA destas palavras
+#   todas    -> o texto precisa conter TODAS estas palavras
+#   excluir  -> se contiver qualquer uma destas, o link e descartado
+# A comparacao ignora maiusculas e acentos.
+
+padroes:
+  mestrado:
+    qualquer:
+      - edital
+      - processo seletivo
+      - selecao
+      - inscricoes
+      - inscricao
+      - mestrado
+      - pos-graduacao
+      - stricto sensu
+    todas: []
+    excluir:
+      - resultado final
+      - homologacao do resultado
+      - retificacao do resultado
+      - convocacao para matricula
+      - iniciacao cientifica
+      - graduacao sanduiche
+
+  concurso:
+    qualquer:
+      - direito
+      - juridic
+      - advogad
+      - procurador
+      - defensor
+      - promotor
+      - magistratura
+      - juiz
+      - delegado
+      - analista judiciario
+      - tecnico judiciario
+      - oficial de justica
+      - assessor juridico
+      - escriva
+      - ministerio publico
+      - tribunal
+      - oab
+    todas: []
+    excluir:
+      - resultado final
+      - gabarito
+      - apostila
+      - curso preparatorio
+      - simulado
+
+fontes:
+  # ------------------------------------------------------------------
+  # Mestrado - UFG (Goias)
+  # ------------------------------------------------------------------
+  - nome: UFG - Pro-Reitoria de Pos-Graduacao (PRPG)
+    url: https://prpg.ufg.br/
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  - nome: UFG - Processos seletivos stricto sensu
+    url: https://prpg.ufg.br/n/processos-seletivos
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  - nome: UFG - Editais institucionais
+    url: https://editais.ufg.br/
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  # ------------------------------------------------------------------
+  # Mestrado - UnB (Brasilia)
+  # ------------------------------------------------------------------
+  - nome: UnB - Decanato de Pos-Graduacao (editais de selecao)
+    url: https://dpg.unb.br/editais-de-selecao
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  - nome: UnB - Portal de editais
+    url: https://www.unb.br/editais
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  - nome: UnB - Noticias da pos-graduacao
+    url: https://dpg.unb.br/
+    tipo: html
+    categoria: mestrado
+    ativa: true
+
+  # ------------------------------------------------------------------
+  # Mestrado - demais federais no DF / entorno
+  # ------------------------------------------------------------------
+  - nome: IFB - Editais (Instituto Federal de Brasilia)
+    url: https://www.ifb.edu.br/editais
+    tipo: html
+    categoria: mestrado
+    ativa: false   # ligue se quiser acompanhar tambem o IFB
+
+  # ------------------------------------------------------------------
+  # Concursos para formados em Direito
+  # ------------------------------------------------------------------
+  - nome: Concursos no Brasil (feed)
+    url: https://www.concursosnobrasil.com.br/feed/
+    tipo: rss
+    categoria: concurso
+    ativa: true
+
+  - nome: PCI Concursos - ultimas noticias
+    url: https://www.pciconcursos.com.br/noticias/
+    tipo: html
+    categoria: concurso
+    ativa: true
+
+  - nome: PCI Concursos - vagas de nivel superior
+    url: https://www.pciconcursos.com.br/concursos/nivelsuperior/
+    tipo: html
+    categoria: concurso
+    ativa: true
+
+  - nome: JC Concursos (feed)
+    url: https://jcconcursos.com.br/feed
+    tipo: rss
+    categoria: concurso
+    ativa: true
+
+  - nome: TJDFT - Concursos
+    url: https://www.tjdft.jus.br/institucional/concursos
+    tipo: html
+    categoria: concurso
+    ativa: true
+
+  - nome: MPDFT - Concursos
+    url: https://www.mpdft.mp.br/portal/index.php/concursos-menu
+    tipo: html
+    categoria: concurso
+    ativa: true
+
+  - nome: Cebraspe - Concursos em andamento
+    url: https://www.cebraspe.org.br/concursos/
+    tipo: html
+    categoria: concurso
+    ativa: true
