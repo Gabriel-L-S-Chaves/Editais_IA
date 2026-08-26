@@ -247,3 +247,26 @@ def test_destino_com_espacos_em_branco_e_ignorado(monkeypatch):
     monkeypatch.setenv("EMAIL_DESTINO", " a@x.com , , b@x.com ")
     monkeypatch.delenv("SMTP_PORTA", raising=False)
     assert ConfigEmail.do_ambiente().destinatarios == ("a@x.com", "b@x.com")
+
+
+# ------------------------------------------- formato da senha de app do Google
+
+@pytest.mark.parametrize(
+    "digitada, esperada",
+    [
+        # como o Google mostra na tela, que e como costuma ser copiada
+        ("tniz ulym tqfv vwov", "tnizulymtqfvvwov"),
+        ("ABCD EFGH IJKL MNOP", "ABCDEFGHIJKLMNOP"),
+        # ja sem espacos: nao mexe
+        ("tnizulymtqfvvwov", "tnizulymtqfvvwov"),
+        # senha comum com espaco de proposito: preservada
+        ("minha senha secreta", "minha senha secreta"),
+        ("abc def ghi jkl", "abc def ghi jkl"),
+    ],
+)
+def test_senha_de_app_com_espacos(monkeypatch, digitada, esperada):
+    monkeypatch.setenv("SMTP_USUARIO", "eu@gmail.com")
+    monkeypatch.setenv("EMAIL_DESTINO", "eu@gmail.com")
+    monkeypatch.setenv("SMTP_SENHA", digitada)
+    monkeypatch.delenv("SMTP_PORTA", raising=False)
+    assert ConfigEmail.do_ambiente().senha == esperada

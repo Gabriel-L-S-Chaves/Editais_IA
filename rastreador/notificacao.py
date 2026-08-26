@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import logging
 import os
+import re
 import smtplib
 from dataclasses import dataclass
 from email.message import EmailMessage
@@ -19,6 +20,21 @@ ROTULOS = {
     "concurso": "Concursos - Direito",
     "geral": "Outros",
 }
+
+
+# Senha de app do Google: 16 letras que a tela mostra em 4 grupos de 4.
+_SENHA_DE_APP = re.compile(r"^[a-z]{4}(?: [a-z]{4}){3}$", re.IGNORECASE)
+
+
+def _limpar_senha(senha: str) -> str:
+    """Tira os espacos quando a senha tem a cara de uma senha de app do Google.
+
+    A tela do Google exibe "abcd efgh ijkl mnop" e e assim que ela costuma ser
+    copiada, mas o valor real sao as 16 letras seguidas. So mexe quando o
+    formato bate exatamente, para nao estragar a senha de quem usa espaco de
+    proposito em outro provedor.
+    """
+    return senha.replace(" ", "") if _SENHA_DE_APP.match(senha) else senha
 
 
 def _ambiente(nome: str, padrao: str = "") -> str:
@@ -67,7 +83,7 @@ class ConfigEmail:
             servidor=_ambiente("SMTP_SERVIDOR", "smtp.gmail.com"),
             porta=porta,
             usuario=usuario,
-            senha=_ambiente("SMTP_SENHA"),
+            senha=_limpar_senha(_ambiente("SMTP_SENHA")),
             remetente=_ambiente("EMAIL_REMETENTE", usuario),
             destinatarios=destinos,
             usar_ssl=_ambiente("SMTP_SSL", "auto").lower() in {"auto", "1", "true"}
