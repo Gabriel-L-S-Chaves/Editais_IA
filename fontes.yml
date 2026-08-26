@@ -120,7 +120,7 @@ fontes:
     url: https://direito.ufg.br/
     tipo: html
     categoria: mestrado
-    ativa: true    # candidata
+    ativa: true    # so tinha menu no teste, mas publica noticias; fica ligada
 
   # ------------------------------------------------------------------
   # Mestrado - UnB (Brasilia)
@@ -131,17 +131,19 @@ fontes:
     categoria: mestrado
     ativa: true    # confirmada: publica noticias como links de verdade
 
+  # Testada: 70 links, todos de menu institucional. Os editais ficam no PPGD.
   - nome: UnB - Faculdade de Direito
     url: https://fd.unb.br/
     tipo: html
     categoria: mestrado
-    ativa: true    # candidata
+    ativa: false
 
   - nome: UnB - Pos-Graduacao em Direito (PPGD)
     url: https://ppgd.unb.br/
     tipo: html
     categoria: mestrado
-    ativa: true    # candidata
+    ativa: true    # confirmada: a melhor fonte da UnB. Achou "Processo Seletivo
+                   # 2026/2" e "EDITAL DPG/UnB No 08/2026 - BOLSAS DE MESTRADO"
 
   # O Decanato de Pos-Graduacao (dpg.unb.br/editais-de-selecao) foi testado e
   # nao serve: a pagina devolve 131 links, todos de menu. A lista de editais
@@ -188,11 +190,13 @@ fontes:
     categoria: concurso
     ativa: true    # feed responde; naquele dia nao tinha vaga juridica
 
+  # Testada duas vezes: 94 links, todos de menu e rodape. A pagina de concursos
+  # do MPDFT nao expoe os editais no HTML. O PCI e o JC noticiam esses concursos.
   - nome: MPDFT - Concursos
     url: https://www.mpdft.mp.br/portal/index.php/concursos-menu
     tipo: html
     categoria: concurso
-    ativa: true
+    ativa: false
 
   - nome: TJDFT - Portal
     url: https://www.tjdft.jus.br/

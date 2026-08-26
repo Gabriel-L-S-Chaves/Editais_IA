@@ -171,8 +171,15 @@ tests/                         testes offline, com paginas de exemplo
 
 ## Observacoes
 
-- As URLs em `fontes.yml` sao os pontos de entrada oficiais conhecidos, mas
-  paginas institucionais mudam de endereco. Rode `--testar-fontes` de vez em
+- Todas as fontes ligadas foram testadas em producao em 26/08/2026. As que
+  ficaram desligadas estao no arquivo com o motivo anotado — quase sempre
+  porque a pagina monta a lista por JavaScript, e ai o HTML so tem menu
+  (foi o caso do Decanato de Pos-Graduacao da UnB, do MPDFT e do Cebraspe).
+- A cobertura da UnB hoje vem do **PPGD** (mestrado em Direito) e do
+  **UnB Noticias**. Para acompanhar o mestrado de outra area da UnB, o mais
+  seguro e achar o site do programa e adicionar como fonte, do mesmo jeito
+  que o PPGD.
+- Paginas institucionais mudam de endereco. Rode `--testar-fontes` de vez em
   quando; qualquer fonte que responda com erro aparece marcada como `[ERRO]`.
 - Se o envio de e-mail falhar, os itens **nao** sao marcados como vistos: a
   proxima execucao tenta avisar de novo.
