@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-08-28T21:49:27.778040+00:00",
+  "atualizado_em": "2026-08-31T18:56:02.711678+00:00",
   "itens": {
     "06118ddc771541f6": {
       "categoria": "concurso",
@@ -120,12 +120,26 @@
       "url": "https://www.tjdft.jus.br/informacoes/concursos/estagiarios",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
     },
+    "c28cc91a22d06794": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "SETEC Campinas - SP abre concurso público para o cargo de Procurador",
+      "url": "https://www.pciconcursos.com.br/noticias/setec-campinas-sp-abre-concurso-publico-para-o-cargo-de-procurador",
+      "visto_em": "2026-08-31T18:56:02.711441+00:00"
+    },
     "c539e8ccc9615f71": {
       "categoria": "mestrado",
       "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
       "titulo": "PPGE abre vagas para seleção de aluno especial",
       "url": "https://prpg.ufg.br/n/ppge-abre-vagas-para-selecao-aluno-especial",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "d1894397e6734cbd": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso TJ SC: autorizada contratação da banca para cargo de juiz substituto",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-tj-sc-autorizada-contratacao-da-banca-para-o-cargo-de-juiz-substituto-145106",
+      "visto_em": "2026-08-31T18:56:02.711441+00:00"
     },
     "d50abe7468d6518a": {
       "categoria": "mestrado",
