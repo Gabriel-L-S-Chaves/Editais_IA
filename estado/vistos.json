@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-09-15T16:27:04.952379+00:00",
+  "atualizado_em": "2026-09-15T20:56:16.482448+00:00",
   "itens": {
     "06118ddc771541f6": {
       "categoria": "concurso",
@@ -84,6 +84,13 @@
       "titulo": "Processo Seletivo para Estrangeiro",
       "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-para-estrangeiro",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "5e62bc86fa245699": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso PC AC: novo edital para 139 vagas deve ser publicado até dezembro, segundo delegado-geral",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-pc-ac-edital-para-139-vagas-deve-ser-publicado-ate-dezembro-145431",
+      "visto_em": "2026-09-15T20:56:16.482227+00:00"
     },
     "66657a73a6c9eaea": {
       "categoria": "mestrado",
