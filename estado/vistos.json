@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-09-15T04:16:59.975204+00:00",
+  "atualizado_em": "2026-09-15T16:27:04.952379+00:00",
   "itens": {
     "06118ddc771541f6": {
       "categoria": "concurso",
@@ -106,12 +106,33 @@
       "url": "https://prpg.ufg.br/n/ppgdr-abre-vagas-para-mestrado",
       "visto_em": "2026-08-26T19:47:08.997595+00:00"
     },
+    "6f0bf6d88bdc07a4": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "TJRS retifica concurso público para o cargo de Juiz de Direito Substituto",
+      "url": "https://www.pciconcursos.com.br/noticias/tjrs-retifica-concurso-publico-para-o-cargo-de-juiz-de-direito-substituto",
+      "visto_em": "2026-09-15T16:27:04.952138+00:00"
+    },
     "71044579d83f0084": {
       "categoria": "concurso",
       "fonte": "PCI Concursos - ultimas noticias",
       "titulo": "SEPLAG - AL publica edital de concurso público para Agente e Escrivão na Polícia Civil",
       "url": "https://www.pciconcursos.com.br/noticias/seplag-al-publica-edital-de-concurso-publico-para-agente-e-escrivao-na-policia-civil",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "810b7ebeaaa03169": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGEF abre vagas para mestrado",
+      "url": "https://prpg.ufg.br/n/ppgef-abre-vagas-para-mestrado",
+      "visto_em": "2026-09-15T16:27:04.952138+00:00"
+    },
+    "8eb9670af6507ed8": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso TJ PB contará com oferta de 56 vagas para servidores e juízes",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-tj-pb-contara-com-oferta-de-56-vagas-para-servidores-e-juizes-145427",
+      "visto_em": "2026-09-15T16:27:04.952138+00:00"
     },
     "94102edf9c53efe2": {
       "categoria": "concurso",
@@ -224,6 +245,13 @@
       "titulo": "Polícia Civil - BA abre concurso público para Delegado, Investigador e Escrivão",
       "url": "https://www.pciconcursos.com.br/noticias/policia-civil-ba-abre-concurso-publico-para-delegado-investigador-e-escrivao",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "e330c5f5c1d4499f": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso do TJ RS abre inscrições para 30 vagas de juiz substituto",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-do-tj-rs-abre-inscricoes-para-30-vagas-de-juiz-substituto-145418",
+      "visto_em": "2026-09-15T16:27:04.952138+00:00"
     },
     "ebb6fea7f718f88b": {
       "categoria": "mestrado",
