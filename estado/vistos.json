@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-09-21T17:57:07.840780+00:00",
+  "atualizado_em": "2026-09-21T21:52:07.493587+00:00",
   "itens": {
     "06118ddc771541f6": {
       "categoria": "concurso",
@@ -56,6 +56,13 @@
       "titulo": "Concurso TJ SC: assinado contrato com banca para juiz substituto; edital em 13 de outubro",
       "url": "https://jcconcursos.com.br/noticia/concursos/concurso-tj-sc-assinado-contrato-com-banca-para-juiz-substituto-edital-em-13-de-outubro-145475",
       "visto_em": "2026-09-17T21:00:59.955031+00:00"
+    },
+    "2f26d0ef51b2fcc9": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Processo seletivo FAI (SP): últimas dias para concorrer ao cargo de Analista Jurídico",
+      "url": "https://jcconcursos.com.br/noticia/concursos/processo-seletivo-fai-sp-ultimas-dias-para-concorrer-ao-cargo-de-analista-juridico-145530",
+      "visto_em": "2026-09-21T21:52:07.493235+00:00"
     },
     "2f319be405eda8cf": {
       "categoria": "mestrado",
@@ -238,6 +245,13 @@
       "titulo": "Processo Seletivo PRONERA",
       "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-pronera",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "9e9de0b23afbe26a": {
+      "categoria": "concurso",
+      "fonte": "PCI Concursos - ultimas noticias",
+      "titulo": "ADE SAMPA - SP abre seleção pública para Assistente II na área de Gerência Jurídica",
+      "url": "https://www.pciconcursos.com.br/noticias/ade-sampa-sp-abre-selecao-publica-para-assistente-ii-na-area-de-gerencia-juridica",
+      "visto_em": "2026-09-21T21:52:07.493235+00:00"
     },
     "9eda391796980066": {
       "categoria": "mestrado",
