@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-09-24T16:38:54.884434+00:00",
+  "atualizado_em": "2026-09-28T19:21:09.927748+00:00",
   "itens": {
     "06118ddc771541f6": {
       "categoria": "concurso",
@@ -316,6 +316,13 @@
       "url": "https://www.pciconcursos.com.br/noticias/prefeitura-de-campina-grande-pb-altera-data-da-prova-do-concurso-publico-para-procurador-municipal",
       "visto_em": "2026-09-21T17:57:07.840473+00:00"
     },
+    "b9ace246638d1af7": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "MAI/DAI 2026: PRPG e PRPI consultam programas sobre oferta de vagas",
+      "url": "https://prpg.ufg.br/n/mai-dai-prpg-prpi-consultam-ppgs",
+      "visto_em": "2026-09-28T19:21:09.927466+00:00"
+    },
     "c28cc91a22d06794": {
       "categoria": "concurso",
       "fonte": "PCI Concursos - ultimas noticias",
@@ -329,6 +336,13 @@
       "titulo": "Prefeitura de Pirpirituba (PB) abre concurso com vaga para Procurador Jurídico",
       "url": "https://concursosnobrasil.com/concursos/pb/2026/09/09/prefeitura-de-pirpirituba-pb-abre-concurso-com-vaga-para-procurador-juridico/",
       "visto_em": "2026-09-10T04:00:12.124244+00:00"
+    },
+    "c4f96d2f684f5e73": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso do TRF5: últimas horas de inscrição para juiz substituto",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-do-trf5-ultimas-horas-de-inscricao-para-juiz-145688",
+      "visto_em": "2026-09-28T19:21:09.927466+00:00"
     },
     "c539e8ccc9615f71": {
       "categoria": "mestrado",
