@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-10-02T04:58:21.523400+00:00",
+  "atualizado_em": "2026-10-02T17:34:15.079774+00:00",
   "itens": {
     "06118ddc771541f6": {
       "categoria": "concurso",
@@ -50,6 +50,13 @@
       "url": "https://www.tjdft.jus.br/resolveuid/b361c8da24b941359a21ab2a776e1ef8",
       "visto_em": "2026-09-17T21:00:59.955031+00:00"
     },
+    "257fa10367561a7d": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGGECON abre vagas para mestrado",
+      "url": "https://prpg.ufg.br/n/vagas-mestrado-ppggecon",
+      "visto_em": "2026-10-02T17:34:15.079565+00:00"
+    },
     "27ec6557a5e5b154": {
       "categoria": "mestrado",
       "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
@@ -91,6 +98,13 @@
       "titulo": "Ir para o conteúdo de: EDITAL DPG/UnB Nº 08/2026 – BOLSAS DE MESTRADO E DOUTORADO FAP/DF",
       "url": "https://ppgd.unb.br/destaques-nao-mexer/343-edital-dpg-unb-n-08-2026-bolsas-de-mestrado-e-doutorado-fap-df",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "2fa103dcc3d7e048": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGBAN promove processo seletivo para mestrado e doutorado",
+      "url": "https://prpg.ufg.br/n/ppgban-promove-processo-seletivo-mestrado-doutorado",
+      "visto_em": "2026-10-02T17:34:15.079565+00:00"
     },
     "32b95ceb3ce573b3": {
       "categoria": "concurso",
@@ -427,6 +441,13 @@
       "titulo": "Concurso TJ SC: autorizada contratação da banca para cargo de juiz substituto",
       "url": "https://jcconcursos.com.br/noticia/concursos/concurso-tj-sc-autorizada-contratacao-da-banca-para-o-cargo-de-juiz-substituto-145106",
       "visto_em": "2026-08-31T18:56:02.711441+00:00"
+    },
+    "d4d9156ca806ddea": {
+      "categoria": "mestrado",
+      "fonte": "UFG - Pro-Reitoria de Pos-Graduacao (PRPG)",
+      "titulo": "PPGQ abre vagas para mestrado e doutorado",
+      "url": "https://prpg.ufg.br/n/vagas-mestrado-doutorado-ppgq",
+      "visto_em": "2026-10-02T17:34:15.079565+00:00"
     },
     "d50abe7468d6518a": {
       "categoria": "mestrado",
