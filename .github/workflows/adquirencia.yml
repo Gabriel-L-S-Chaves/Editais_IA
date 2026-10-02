@@ -1,0 +1,47 @@
+name: Atualizar Report Transacional ADQ
+
+on:
+  schedule:
+    # 09:00 no horario de Brasilia (UTC-3)
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Janela de reprocessamento em dias (reconsulta os ultimos N dias)"
+        type: string
+        default: "7"
+
+concurrency:
+  group: adquirencia
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: adquirencia/requirements.txt
+
+      - name: Instalar dependencias
+        run: pip install -r adquirencia/requirements.txt
+
+      - name: Atualizar planilha
+        env:
+          DATABRICKS_SERVER_HOSTNAME: ${{ secrets.DATABRICKS_SERVER_HOSTNAME }}
+          DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ONEDRIVE_DRIVE_ID: ${{ secrets.ONEDRIVE_DRIVE_ID }}
+          ONEDRIVE_CAMINHO: ${{ secrets.ONEDRIVE_CAMINHO }}
+          JANELA_DIAS: ${{ inputs.dias || '7' }}
+        run: python -m adquirencia
