@@ -15,7 +15,7 @@ As demais abas nao sao tocadas.
 ## Instalacao (uma vez)
 1. Python 3.11+ e, na pasta do projeto: `pip install -r adquirencia\requirements.txt`
 2. Confirme o nome do DSN (Fontes de Dados ODBC 64 bits) e ajuste `ODBC_DSN` no `rodar_adquirencia.bat`.
-3. Mapeie os dados: `python -m adquirencia.inventario_odbc --dsn NOME --catalogo gold --schema adquirencia --mascarar`
+3. Mapeie os dados: `python -m adquirencia.inventario_odbc --dsn NOME --catalogo gold silver --mascarar`
    e me envie `inventario_colunas.csv` / `inventario_amostras.csv`.
 4. Edite `consulta.sql` com a tabela e filtros reais.
 5. Teste: `adquirencia\rodar_adquirencia.bat` e veja `adquirencia\execucao.log`.

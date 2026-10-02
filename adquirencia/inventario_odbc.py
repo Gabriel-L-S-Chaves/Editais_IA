@@ -18,15 +18,15 @@ SENSIVEIS = ("cnpj", "cpf", "nome", "email", "telefone", "documento", "razao")
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--dsn", required=True)
-    p.add_argument("--catalogo", help="ex.: gold (padrao: todos que voce enxerga)")
-    p.add_argument("--schema", help="ex.: adquirencia")
+    p.add_argument("--catalogo", nargs="+", help="ex.: gold silver (padrao: todos que voce enxerga)")
+    p.add_argument("--schema", help="ex.: adquirencia (vale para todos os catalogos; omita para listar todos)")
     p.add_argument("--amostra", type=int, default=5)
     p.add_argument("--mascarar", action="store_true")
     a = p.parse_args()
 
     con = conectar(a.dsn)
     cur = con.cursor()
-    catalogos = [a.catalogo] if a.catalogo else [r[0] for r in cur.execute("SHOW CATALOGS").fetchall()]
+    catalogos = a.catalogo or [r[0] for r in cur.execute("SHOW CATALOGS").fetchall()]
 
     with open("inventario_colunas.csv", "w", newline="", encoding="utf-8-sig") as fc, \
          open("inventario_amostras.csv", "w", newline="", encoding="utf-8-sig") as fa:
