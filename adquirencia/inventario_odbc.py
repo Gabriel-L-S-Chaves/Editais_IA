@@ -15,6 +15,37 @@ from .odbc import conectar
 SENSIVEIS = ("cnpj", "cpf", "nome", "email", "telefone", "documento", "razao")
 
 
+def _colunas(cur, cat, schema):
+    """(schema, tabela, coluna, tipo). Tenta information_schema; se o driver
+    falhar, cai para SHOW/DESCRIBE."""
+    filtro = f"AND table_schema = '{schema}'" if schema else ""
+    try:
+        cur.execute(
+            f"SELECT CAST(table_schema AS STRING), CAST(table_name AS STRING), "
+            f"CAST(column_name AS STRING), CAST(data_type AS STRING) "
+            f"FROM {cat}.information_schema.columns "
+            f"WHERE table_schema <> 'information_schema' {filtro} "
+            f"ORDER BY 1,2,ordinal_position")
+        return [tuple(r) for r in cur.fetchall()]
+    except Exception as e:
+        print(f"[{cat}] information_schema falhou ({e}); usando SHOW/DESCRIBE")
+    saida = []
+    schemas = [schema] if schema else [r[0] for r in cur.execute(f"SHOW SCHEMAS IN {cat}").fetchall()]
+    for sch in schemas:
+        if sch == "information_schema":
+            continue
+        for r in cur.execute(f"SHOW TABLES IN {cat}.{sch}").fetchall():
+            tab = r[1]
+            try:
+                for c in cur.execute(f"DESCRIBE TABLE {cat}.{sch}.{tab}").fetchall():
+                    if not c[0] or c[0].startswith("#"):
+                        break  # fim das colunas (comeca info de particao)
+                    saida.append((sch, tab, c[0], c[1]))
+            except Exception as e:
+                print(f"[sem colunas] {cat}.{sch}.{tab}: {e}")
+    return saida
+
+
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--dsn", required=True)
@@ -37,14 +68,9 @@ def main() -> int:
             if cat in ("system", "samples", "hive_metastore"):
                 continue
             try:
-                filtro = f"AND table_schema = '{a.schema}'" if a.schema else ""
-                tabelas = cur.execute(
-                    f"SELECT table_schema, table_name, column_name, data_type "
-                    f"FROM {cat}.information_schema.columns "
-                    f"WHERE table_schema <> 'information_schema' {filtro} "
-                    f"ORDER BY 1,2,ordinal_position").fetchall()
+                tabelas = _colunas(cur, cat, a.schema)
             except Exception as e:  # sem permissao no catalogo: segue
-                print(f"[pulado] {cat}: {str(e)[:100]}")
+                print(f"[pulado] {cat}: {e}")
                 continue
             vistas = []
             for sch, tab, col, tipo in tabelas:
@@ -61,7 +87,7 @@ def main() -> int:
                             f"{n}=***" if a.mascarar and any(s in n.lower() for s in SENSIVEIS) else f"{n}={v}"
                             for n, v in zip(nomes, linha)])
                 except Exception as e:
-                    print(f"[sem amostra] {nome}: {str(e)[:100]}")
+                    print(f"[sem amostra] {nome}: {e}")
             print(f"{cat}: {len(vistas)} tabelas")
     print("Gerados: inventario_colunas.csv e inventario_amostras.csv")
     return 0
