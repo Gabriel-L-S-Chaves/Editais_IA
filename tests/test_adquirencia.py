@@ -46,3 +46,10 @@ def test_preserva_historico_fora_da_janela_e_outras_abas():
     assert sorted(planilha.ler_historico(wb)) == [date(2026, 9, 1), date(2026, 10, 1)]
     assert wb["Outra"]["A1"].value == "intocada"
     assert wb.sheetnames == [planilha.ABA, "Outra"]
+
+
+def test_gravar_atomico_nao_deixa_temporario(tmp_path):
+    from adquirencia.principal import gravar_atomico
+    alvo = tmp_path / "r.xlsx"
+    gravar_atomico(alvo, b"abc")
+    assert alvo.read_bytes() == b"abc" and [f.name for f in tmp_path.iterdir()] == ["r.xlsx"]
