@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-10-09T18:03:58.018980+00:00",
+  "atualizado_em": "2026-10-10T05:13:48.845159+00:00",
   "itens": {
     "01360dddb41aa5a0": {
       "categoria": "concurso",
@@ -224,6 +224,13 @@
       "titulo": "Processo Seletivo para Estrangeiro",
       "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-para-estrangeiro",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "5e3796417b5ac48b": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso DPU: formada comissão para escolha da banca para defensor",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-dpu-formada-comissao-para-escolha-da-banca-para-defensor-145963",
+      "visto_em": "2026-10-10T05:13:48.844927+00:00"
     },
     "5e62bc86fa245699": {
       "categoria": "concurso",
@@ -462,6 +469,13 @@
       "titulo": "Prefeitura de Campina Grande - PB altera data da prova do concurso público para Procurador Municipal",
       "url": "https://www.pciconcursos.com.br/noticias/prefeitura-de-campina-grande-pb-altera-data-da-prova-do-concurso-publico-para-procurador-municipal",
       "visto_em": "2026-09-21T17:57:07.840473+00:00"
+    },
+    "b0428b1b7f5627e6": {
+      "categoria": "concurso",
+      "fonte": "Concursos no Brasil (feed)",
+      "titulo": "Estágio PGE CE abre 60 vagas para estudantes de Direito com bolsas de até R$ 2,5 mil",
+      "url": "https://concursosnobrasil.com/concursos/ce/2026/10/09/estagio-pge-ce-abre-60-vagas-para-estudantes-de-direito-com-bolsas-de-ate-r-25-mil/",
+      "visto_em": "2026-10-10T05:13:48.844927+00:00"
     },
     "b9ace246638d1af7": {
       "categoria": "mestrado",
