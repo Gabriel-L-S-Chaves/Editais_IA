@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-05T19:37:03.175453+00:00",
+  "atualizado_em": "2026-11-06T18:58:38.293295+00:00",
   "itens": {
     "01360dddb41aa5a0": {
       "categoria": "concurso",
@@ -329,6 +329,13 @@
       "titulo": "Processo Seletivo para Estrangeiro",
       "url": "https://ppgd.unb.br/processo-seletivo/processo-seletivo-para-estrangeiro",
       "visto_em": "2026-08-26T12:21:24.598595+00:00"
+    },
+    "596ba9671e69475a": {
+      "categoria": "concurso",
+      "fonte": "JC Concursos (feed)",
+      "titulo": "Concurso do TJ SP: salário do oficial de justiça sobe para R$ 10,2 mil",
+      "url": "https://jcconcursos.com.br/noticia/concursos/concurso-do-tj-sp-salario-de-oficial-de-justica-sobe-para-r-102-mil-146440",
+      "visto_em": "2026-11-06T18:58:38.293027+00:00"
     },
     "5e3796417b5ac48b": {
       "categoria": "concurso",
